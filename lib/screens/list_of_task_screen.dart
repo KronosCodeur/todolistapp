@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:todolistapp/models/task_model.dart';
 
  class ListOfTask extends StatefulWidget {
    const ListOfTask({Key? key}) : super(key: key);
@@ -8,7 +9,6 @@ import 'package:google_fonts/google_fonts.dart';
    State<ListOfTask> createState() => _ListOfTaskState();
  }
  class _ListOfTaskState extends State<ListOfTask> {
-   List TaskList = ["libelle de la tache", '12-12-2022 19h20' , '15-02-2023 19h20'];
    @override
    Widget build(BuildContext context) {
      return Container(
@@ -17,7 +17,7 @@ import 'package:google_fonts/google_fonts.dart';
              child: Container(
                child: Column(
                  children: [
-                   for(int i=0; i<TaskList.length; i++)
+                   for(var i in TaskList)
                    Container(
                      decoration: BoxDecoration(
                        border: Border.all(color: Colors.white38,width: 1)
@@ -33,7 +33,7 @@ import 'package:google_fonts/google_fonts.dart';
                              Container(
                                child: Column(
                                  children: [
-                                   Text(TaskList[0],
+                                   Text("${i.description}",
                                    style: GoogleFonts.poppins(
                                      fontSize: 25,
                                      color: Colors.teal,
@@ -43,17 +43,17 @@ import 'package:google_fonts/google_fonts.dart';
                                      mainAxisAlignment: MainAxisAlignment.center,
                                      crossAxisAlignment: CrossAxisAlignment.center,
                                      children: [
-                                       Text(TaskList[1],
+                                       Text("${i.dateHeureDebut}",
                                          style: GoogleFonts.poppins(
                                              fontSize: 12,
-                                             color: Colors.amber,
+                                             color: Colors.white70,
                                              fontWeight: FontWeight.w500
                                          ),),
                                        SizedBox(width: 5,),
-                                       Text(TaskList[2],
+                                       Text("${i.dateHeureFin}",
                                          style: GoogleFonts.poppins(
                                              fontSize: 12,
-                                             color: Colors.amber,
+                                             color: Colors.white70,
                                              fontWeight: FontWeight.w500
                                          ),),
                                      ],
