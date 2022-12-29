@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:todolistapp/models/task_model.dart';
+import 'package:todolistapp/functions/functions.dart';
 
  class ListOfTask extends StatefulWidget {
    const ListOfTask({Key? key}) : super(key: key);
@@ -9,6 +9,7 @@ import 'package:todolistapp/models/task_model.dart';
    State<ListOfTask> createState() => _ListOfTaskState();
  }
  class _ListOfTaskState extends State<ListOfTask> {
+   var newTaskList = TaskList;
    @override
    Widget build(BuildContext context) {
      return Container(
@@ -17,7 +18,7 @@ import 'package:todolistapp/models/task_model.dart';
              child: Container(
                child: Column(
                  children: [
-                   for(var i in TaskList)
+                   for(var element in newTaskList)
                    Container(
                      decoration: BoxDecoration(
                        border: Border.all(color: Colors.white38,width: 1)
@@ -33,7 +34,8 @@ import 'package:todolistapp/models/task_model.dart';
                              Container(
                                child: Column(
                                  children: [
-                                   Text("${i.description}",
+                                   Text(
+                                    "${element.description}",
                                    style: GoogleFonts.poppins(
                                      fontSize: 25,
                                      color: Colors.teal,
@@ -43,14 +45,14 @@ import 'package:todolistapp/models/task_model.dart';
                                      mainAxisAlignment: MainAxisAlignment.center,
                                      crossAxisAlignment: CrossAxisAlignment.center,
                                      children: [
-                                       Text("${i.dateHeureDebut}",
+                                       Text("${element.dateHeureDebut}",
                                          style: GoogleFonts.poppins(
                                              fontSize: 12,
                                              color: Colors.white70,
                                              fontWeight: FontWeight.w500
                                          ),),
                                        SizedBox(width: 5,),
-                                       Text("${i.dateHeureFin}",
+                                       Text("${element.dateHeureFin}",
                                          style: GoogleFonts.poppins(
                                              fontSize: 12,
                                              color: Colors.white70,
@@ -62,21 +64,13 @@ import 'package:todolistapp/models/task_model.dart';
                                ),
                              ),
                              Container(
-                               child: Row(
-                                 children: [
-                                   InkWell(
-                                     onTap: (){
-
-                                     },
-                                     child: Icon(Icons.check_circle, color: Colors.teal,size: 30,),
-                                   ),
-                                   InkWell(
-                                     onTap: (){
-
-                                     },
-                                     child: Icon(Icons.delete_rounded, color: Colors.red,size: 30,),
-                                   ),
-                                 ],
+                               child: InkWell(
+                                 onTap: (){
+                                   RemoveTaskFromTaskList(element);
+                                   newTaskList.clear();
+                                   newTaskList=TaskList;
+                                 },
+                                 child: Icon(Icons.delete_rounded, color: Colors.red,size: 30,),
                                ),
                              )
                            ],

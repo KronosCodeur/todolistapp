@@ -13,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:PreferredSize(child: TaskAppBar(), 
+      appBar:PreferredSize(child: TaskListAppBar(),
           preferredSize: Size.fromHeight(50.0)),
       body: ListOfTask(),
     );
